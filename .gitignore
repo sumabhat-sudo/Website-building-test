@@ -1,0 +1,10 @@
+# Dependencies
+node_modules/
+
+# Screenshots (local dev artifacts)
+temporary screenshots/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log

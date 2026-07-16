@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSC® — Taking Foam Further™ | Advanced Materials Innovation Since 1945</title>
+  <meta name="description" content="DSC is a family-owned advanced materials innovation partner with 80+ years of expertise in foam technology, chemical engineering, and manufacturing." />
+  <link rel="icon" href="DSC_Logo.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:ital,wght@0,400..700;1,400&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#111318',
+            paper: '#F6F4EE',
+            'paper-2': '#EFEBE1',
+            brand: { DEFAULT: '#3159A7', deep: '#1E3B75', light: '#5B82CE', wash: '#E4EAF6' },
+            signal: '#2E9E6B',
+          },
+          fontFamily: {
+            display: ['"Bricolage Grotesque"', 'serif'],
+            sans: ['"Hanken Grotesk"', 'system-ui', 'sans-serif'],
+            mono: ['"Spline Sans Mono"', 'ui-monospace', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root { --brand:#3159A7; --brand-deep:#1E3B75; --ink:#111318; --paper:#F6F4EE; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+    .h-tight { letter-spacing: -0.035em; line-height: 0.94; }
+    .kicker { font-family:'Spline Sans Mono',monospace; text-transform:uppercase; letter-spacing:0.22em; font-size:0.72rem; }
+
+    /* Grain + atmosphere */
+    .grain::before {
+      content:''; position:absolute; inset:0; pointer-events:none; z-index:0; opacity:0.5;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+      mix-blend-mode:multiply;
+    }
+    .mesh {
+      background:
+        radial-gradient(60% 55% at 12% 8%, rgba(49,89,167,0.16), transparent 60%),
+        radial-gradient(55% 50% at 92% 22%, rgba(91,130,206,0.18), transparent 60%),
+        radial-gradient(70% 60% at 78% 105%, rgba(46,158,107,0.10), transparent 60%);
+    }
+
+    /* Foam cell motif */
+    .cells { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='83' viewBox='0 0 72 83'%3E%3Cg fill='none' stroke='%233159A7' stroke-opacity='0.14' stroke-width='1.1'%3E%3Cpath d='M36 1 L71 21 L71 62 L36 82 L1 62 L1 21 Z'/%3E%3Cpath d='M36 1 L36 -20 M71 21 L89 10 M71 62 L89 73 M36 82 L36 103 M1 62 L-17 73 M1 21 L-17 10'/%3E%3C/g%3E%3C/svg%3E"); }
+
+    .link-underline { position:relative; }
+    .link-underline::after { content:''; position:absolute; left:0; bottom:-3px; height:1.5px; width:100%; background:currentColor; transform:scaleX(0); transform-origin:right; transition:transform .4s cubic-bezier(.19,1,.22,1); }
+    .link-underline:hover::after { transform:scaleX(1); transform-origin:left; }
+
+    .btn-primary { background:var(--brand); color:#fff; box-shadow:0 1px 0 rgba(255,255,255,0.2) inset, 0 10px 24px -10px rgba(30,59,117,0.65); transition:transform .35s cubic-bezier(.19,1,.22,1), box-shadow .35s, background .3s; }
+    .btn-primary:hover { transform:translateY(-2px); background:var(--brand-deep); box-shadow:0 1px 0 rgba(255,255,255,0.25) inset, 0 18px 34px -12px rgba(30,59,117,0.7); }
+    .btn-primary:active { transform:translateY(0); }
+    .btn-ghost { border:1px solid rgba(17,19,24,0.18); transition:border-color .3s, background .3s, transform .35s cubic-bezier(.19,1,.22,1); }
+    .btn-ghost:hover { border-color:var(--brand); background:rgba(49,89,167,0.06); transform:translateY(-2px); }
+    .btn-primary:focus-visible, .btn-ghost:focus-visible, a:focus-visible { outline:2px solid var(--brand); outline-offset:3px; }
+
+    .platform-card { transition:transform .5s cubic-bezier(.19,1,.22,1), box-shadow .5s, border-color .4s; }
+    .platform-card:hover { transform:translateY(-6px); box-shadow:0 30px 50px -28px rgba(30,59,117,0.4), 0 4px 12px -6px rgba(17,19,24,0.15); }
+    .platform-card:hover .arrow { transform:translate(4px,-4px); }
+    .arrow { transition:transform .4s cubic-bezier(.19,1,.22,1); }
+
+    .reveal { opacity:0; transform:translateY(26px); transition:opacity .9s cubic-bezier(.19,1,.22,1), transform .9s cubic-bezier(.19,1,.22,1); }
+    .reveal.in { opacity:1; transform:none; }
+    @media (prefers-reduced-motion: reduce){ .reveal{opacity:1;transform:none;transition:none;} html{scroll-behavior:auto;} }
+
+    .hairline { border-top:1px solid rgba(17,19,24,0.12); }
+    .logo-white { filter:brightness(0) invert(1); }
+    ::selection { background:var(--brand); color:#fff; }
+  </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden">
+
+  <!-- NAV -->
+  <header class="fixed top-0 inset-x-0 z-50 transition-all duration-500" id="nav">
+    <div class="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <div class="flex items-center justify-between h-[76px]">
+        <a href="#top" class="flex items-center gap-3" aria-label="DSC home">
+          <img src="DSC_Logo.png" alt="DSC — Dahsheng 1945" class="h-9 w-auto" />
+        </a>
+        <nav class="hidden lg:flex items-center gap-9 text-[0.92rem] font-medium text-ink/80">
+          <a href="#platforms" class="link-underline hover:text-ink">Platforms</a>
+          <a href="#why" class="link-underline hover:text-ink">Why DSC</a>
+          <a href="#further" class="link-underline hover:text-ink">Our Approach</a>
+          <a href="#scale" class="link-underline hover:text-ink">Global Scale</a>
+        </nav>
+        <a href="#partner" class="btn-primary inline-flex items-center gap-2 rounded-full px-4 sm:px-5 py-2.5 text-[0.85rem] sm:text-[0.9rem] font-semibold whitespace-nowrap">
+          Partner with us
+          <svg class="hidden sm:block" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="relative grain mesh overflow-hidden">
+    <div class="absolute inset-0 cells opacity-70" aria-hidden="true"></div>
+    <div class="absolute -right-40 top-1/4 h-[520px] w-[520px] rounded-full blur-3xl opacity-30" style="background:radial-gradient(circle,#5B82CE,transparent 70%)" aria-hidden="true"></div>
+
+    <div class="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-10 pt-40 pb-24 lg:pt-52 lg:pb-32">
+      <div class="grid lg:grid-cols-12 gap-12 items-end">
+        <div class="lg:col-span-8">
+          <div class="reveal flex items-center gap-3 mb-8" style="transition-delay:.05s">
+            <span class="inline-block h-px w-10 bg-brand"></span>
+            <span class="kicker text-brand-deep">Taking Foam Further&trade;</span>
+          </div>
+          <h1 class="reveal font-display font-extrabold h-tight text-[clamp(2.9rem,7.2vw,6.6rem)] text-ink" style="transition-delay:.12s">
+            Advanced materials,<br />engineered to<br /><span class="text-brand">move people forward.</span>
+          </h1>
+          <p class="reveal mt-8 max-w-xl text-[1.12rem] leading-[1.7] text-ink/70" style="transition-delay:.22s">
+            A family-owned materials innovation partner since 1945. We combine foam science, chemical engineering, and manufacturing to help global brands build products that deliver real comfort, performance, and function.
+          </p>
+          <div class="reveal mt-10 flex flex-wrap items-center gap-4" style="transition-delay:.3s">
+            <a href="#platforms" class="btn-primary inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[0.98rem] font-semibold">
+              Explore our platforms
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+            </a>
+            <a href="#partner" class="btn-ghost inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[0.98rem] font-semibold text-ink">
+              Start a project
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero stat rail -->
+        <div class="reveal lg:col-span-4" style="transition-delay:.38s">
+          <div class="rounded-2xl border border-ink/10 bg-white/55 backdrop-blur-md p-7 shadow-[0_30px_60px_-40px_rgba(30,59,117,0.55)]">
+            <p class="kicker text-ink/45 mb-5">By the numbers</p>
+            <dl class="space-y-5">
+              <div class="flex items-baseline justify-between border-b border-ink/8 pb-4">
+                <dd class="font-display font-bold text-4xl text-brand tabular-nums" data-count="81" data-suffix="+">0</dd>
+                <dt class="text-right text-sm text-ink/60 leading-snug max-w-[9rem]">Years of foam &amp; chemical engineering</dt>
+              </div>
+              <div class="flex items-baseline justify-between border-b border-ink/8 pb-4">
+                <dd class="font-display font-bold text-4xl text-brand tabular-nums" data-count="8">0</dd>
+                <dt class="text-right text-sm text-ink/60 leading-snug max-w-[9rem]">Manufacturing locations across Asia &amp; North America</dt>
+              </div>
+              <div class="flex items-baseline justify-between">
+                <dd class="font-display font-bold text-4xl text-brand tabular-nums" data-count="3">0</dd>
+                <dt class="text-right text-sm text-ink/60 leading-snug max-w-[9rem]">Proprietary material platforms</dt>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- marquee -->
+    <div class="relative z-10 border-y border-ink/10 bg-paper-2/60 overflow-hidden py-3">
+      <div class="flex whitespace-nowrap animate-[marquee_38s_linear_infinite] will-change-transform">
+        <span class="marquee-track"></span>
+        <span class="marquee-track"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY / WHO WE ARE -->
+  <section id="why" class="relative py-24 lg:py-36">
+    <div class="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <div class="grid lg:grid-cols-12 gap-14">
+        <div class="lg:col-span-4">
+          <p class="reveal kicker text-brand-deep mb-5">001 — Who we are</p>
+          <h2 class="reveal font-display font-bold text-[clamp(2rem,3.4vw,3.1rem)] h-tight text-ink">
+            Eight decades of solving real problems with material science.
+          </h2>
+        </div>
+        <div class="lg:col-span-7 lg:col-start-6">
+          <p class="reveal text-[1.15rem] leading-[1.75] text-ink/75">
+            What began in 1945 as a foam engineering company has grown into a global advanced-materials partner. We work alongside designers, developers, and engineers — from first concept through full-scale production — turning ideas into materials that perform in the real world.
+          </p>
+          <div class="mt-12 grid sm:grid-cols-3 gap-8">
+            <div class="reveal">
+              <div class="hairline pt-4">
+                <p class="font-mono text-brand text-sm mb-2">Innovation</p>
+                <p class="text-[0.98rem] leading-relaxed text-ink/65">Pushing the boundaries of foam technology and material science.</p>
+              </div>
+            </div>
+            <div class="reveal" style="transition-delay:.08s">
+              <div class="hairline pt-4">
+                <p class="font-mono text-brand text-sm mb-2">Partnership</p>
+                <p class="text-[0.98rem] leading-relaxed text-ink/65">Collaborative development from concept through production.</p>
+              </div>
+            </div>
+            <div class="reveal" style="transition-delay:.16s">
+              <div class="hairline pt-4">
+                <p class="font-mono text-brand text-sm mb-2">Global reach</p>
+                <p class="text-[0.98rem] leading-relaxed text-ink/65">Local support backed by global manufacturing expertise.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section id="platforms" class="relative py-24 lg:py-32 bg-ink text-paper overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.06] cells" aria-hidden="true"></div>
+    <div class="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-10">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+        <div>
+          <p class="reveal kicker text-brand-light mb-5">002 — Product architecture</p>
+          <h2 class="reveal font-display font-bold text-[clamp(2.2rem,4.2vw,3.8rem)] h-tight max-w-2xl">
+            Three proprietary platforms. One material system.
+          </h2>
+        </div>
+        <p class="reveal max-w-sm text-paper/60 leading-relaxed">
+          At the core of DSC are three material platforms — combined into high-performance packages engineered around each product's needs.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- DREAMCELL -->
+        <article class="platform-card reveal group relative rounded-2xl border border-white/12 bg-white/[0.04] p-8 flex flex-col min-h-[420px]">
+          <div class="flex items-start justify-between">
+            <span class="kicker text-brand-light">Open-cell &middot; Comfort</span>
+            <svg class="arrow text-brand-light" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-3xl mt-8">DREAMCELL<span class="align-super text-sm">&reg;</span></h3>
+          <p class="mt-4 text-paper/65 leading-relaxed flex-1">
+            Comfort-driven, open-cell foam engineered for breathability and a soft, adaptive feel — built for all-day wearability and recovery, from morning to night.
+          </p>
+          <div class="mt-6 pt-5 border-t border-white/10 flex gap-2 flex-wrap">
+            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-white/8 text-paper/70">Breathable</span>
+            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-white/8 text-paper/70">Adaptive feel</span>
+          </div>
+        </article>
+
+        <!-- DPX -->
+        <article class="platform-card reveal group relative rounded-2xl border border-white/12 bg-white/[0.04] p-8 flex flex-col min-h-[420px]" style="transition-delay:.08s">
+          <div class="flex items-start justify-between">
+            <span class="kicker text-brand-light">Closed-cell &middot; Performance</span>
+            <svg class="arrow text-brand-light" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-3xl mt-8">DPX<span class="align-super text-sm">&reg;</span></h3>
+          <p class="text-sm text-paper/45 font-mono mt-1">Durapontex&reg;</p>
+          <p class="mt-4 text-paper/65 leading-relaxed flex-1">
+            High-performance, responsive closed-cell foam built for energy return and durability — engineered with advanced processes like supercritical fluid foaming for consistent, resilient performance.
+          </p>
+          <div class="mt-6 pt-5 border-t border-white/10 flex gap-2 flex-wrap">
+            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-white/8 text-paper/70">Energy return</span>
+            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-white/8 text-paper/70">Durable</span>
+          </div>
+        </article>
+
+        <!-- MORPH -->
+        <article class="platform-card reveal group relative rounded-2xl border border-signal/30 bg-signal/[0.07] p-8 flex flex-col min-h-[420px]" style="transition-delay:.16s">
+          <div class="flex items-start justify-between">
+            <span class="kicker text-signal">Adaptable &middot; More than foam</span>
+            <svg class="arrow text-signal" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+          </div>
+          <h3 class="font-display font-bold text-3xl mt-8">MORPH<span class="align-super text-sm">&trade;</span></h3>
+          <p class="mt-4 text-paper/65 leading-relaxed flex-1">
+            Our customizable materials platform — combining DREAMCELL&reg; and DPX&reg; with engineered constructions. Delivered as molded components, sheets, or fully integrated material systems.
+          </p>
+          <div class="mt-6 pt-5 border-t border-white/10 flex gap-2 flex-wrap">
+            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-signal/15 text-signal">Configurable</span>
+            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-signal/15 text-signal">Integrated</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAKING FOAM FURTHER / APPROACH -->
+  <section id="further" class="relative py-24 lg:py-36 overflow-hidden">
+    <div class="absolute inset-0 mesh opacity-70" aria-hidden="true"></div>
+    <div class="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-10">
+      <div class="max-w-3xl mb-16">
+        <p class="reveal kicker text-brand-deep mb-5">003 — Our approach</p>
+        <h2 class="reveal font-display font-bold text-[clamp(2.2rem,4.6vw,4rem)] h-tight text-ink">
+          What it means to take foam further.
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+        <div class="reveal">
+          <span class="font-mono text-brand text-sm">01</span>
+          <h3 class="font-display font-semibold text-xl mt-3 mb-2 text-ink">Material innovation</h3>
+          <p class="text-ink/65 leading-relaxed">Continuously advancing foam technology to solve real-world challenges.</p>
+        </div>
+        <div class="reveal" style="transition-delay:.08s">
+          <span class="font-mono text-brand text-sm">02</span>
+          <h3 class="font-display font-semibold text-xl mt-3 mb-2 text-ink">Human performance</h3>
+          <p class="text-ink/65 leading-relaxed">Enhancing comfort, function, and the way people move.</p>
+        </div>
+        <div class="reveal" style="transition-delay:.16s">
+          <span class="font-mono text-brand text-sm">03</span>
+          <h3 class="font-display font-semibold text-xl mt-3 mb-2 text-ink">True partnership</h3>
+          <p class="text-ink/65 leading-relaxed">Working alongside customers from concept through production.</p>
+        </div>
+        <div class="reveal" style="transition-delay:.24s">
+          <span class="font-mono text-brand text-sm">04</span>
+          <h3 class="font-display font-semibold text-xl mt-3 mb-2 text-ink">Responsible progress</h3>
+          <p class="text-ink/65 leading-relaxed">Improving products, processes, and possibilities — responsibly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOBAL SCALE / IMAGE BAND -->
+  <section id="scale" class="relative py-24 lg:py-32 bg-paper-2">
+    <div class="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <div class="grid lg:grid-cols-2 gap-14 items-center">
+        <div class="reveal relative rounded-2xl overflow-hidden aspect-[4/3] group">
+          <img src="https://placehold.co/900x680/1E3B75/1E3B75" alt="DSC advanced foam materials in production" class="w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent"></div>
+          <div class="absolute inset-0 bg-brand/25 mix-blend-multiply"></div>
+          <div class="absolute bottom-6 left-6 text-paper">
+            <p class="kicker text-paper/80">Global scale, local support</p>
+            <p class="font-display font-semibold text-2xl mt-1">Asia &amp; North America</p>
+          </div>
+        </div>
+        <div>
+          <p class="reveal kicker text-brand-deep mb-5">004 — Global scale</p>
+          <h2 class="reveal font-display font-bold text-[clamp(2rem,3.6vw,3.2rem)] h-tight text-ink mb-6">
+            Innovation centers and manufacturing, close to our partners.
+          </h2>
+          <p class="reveal text-[1.1rem] leading-[1.7] text-ink/70 mb-10">
+            With eight manufacturing locations and innovation centers across two continents, we combine global scale with local support — helping partners bring better products to market, faster.
+          </p>
+          <div class="grid grid-cols-2 gap-8">
+            <div class="reveal">
+              <p class="font-display font-bold text-5xl text-brand tabular-nums" data-count="8">0</p>
+              <p class="text-ink/60 mt-1">Manufacturing locations</p>
+            </div>
+            <div class="reveal" style="transition-delay:.1s">
+              <p class="font-display font-bold text-5xl text-brand tabular-nums" data-count="1945" data-plain="1">0</p>
+              <p class="text-ink/60 mt-1">Family-owned since</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="partner" class="relative py-24 lg:py-36 bg-brand-deep text-paper overflow-hidden grain">
+    <div class="absolute -left-32 -top-32 h-[480px] w-[480px] rounded-full blur-3xl opacity-40" style="background:radial-gradient(circle,#5B82CE,transparent 70%)" aria-hidden="true"></div>
+    <div class="absolute -right-24 bottom-0 h-[420px] w-[420px] rounded-full blur-3xl opacity-30" style="background:radial-gradient(circle,#2E9E6B,transparent 70%)" aria-hidden="true"></div>
+    <div class="relative z-10 mx-auto max-w-[1000px] px-6 lg:px-10 text-center">
+      <p class="reveal kicker text-brand-light mb-6">Let's build together</p>
+      <h2 class="reveal font-display font-extrabold text-[clamp(2.4rem,5.5vw,4.6rem)] h-tight mb-8">
+        Have a material challenge?<br />Let's engineer the answer.
+      </h2>
+      <p class="reveal max-w-xl mx-auto text-paper/70 text-[1.12rem] leading-[1.7] mb-10">
+        Tell us what you're building. Our team will help you find — or develop — the right material package for your product.
+      </p>
+      <div class="reveal flex flex-wrap items-center justify-center gap-4">
+        <a href="mailto:info@dahsheng.us" class="inline-flex items-center gap-2 rounded-full bg-paper text-ink px-7 py-4 text-[1rem] font-semibold transition-transform duration-300 hover:-translate-y-0.5 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-paper">
+          Start a conversation
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#platforms" class="inline-flex items-center gap-2 rounded-full border border-paper/30 px-7 py-4 text-[1rem] font-semibold text-paper transition-colors duration-300 hover:bg-white/10">
+          Review platforms
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink text-paper/70 pt-16 pb-10">
+    <div class="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <div class="grid md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        <div class="md:col-span-5">
+          <img src="DSC_Logo.png" alt="DSC — Dahsheng 1945" class="h-9 w-auto logo-white mb-5" />
+          <p class="max-w-sm leading-relaxed text-paper/55">
+            Advanced materials innovation partner since 1945. Taking Foam Further&trade;.
+          </p>
+        </div>
+        <div class="md:col-span-2">
+          <p class="kicker text-paper/40 mb-4">Platforms</p>
+          <ul class="space-y-2.5">
+            <li><a href="#platforms" class="link-underline hover:text-paper">DREAMCELL&reg;</a></li>
+            <li><a href="#platforms" class="link-underline hover:text-paper">DPX&reg;</a></li>
+            <li><a href="#platforms" class="link-underline hover:text-paper">MORPH&trade;</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-2">
+          <p class="kicker text-paper/40 mb-4">Company</p>
+          <ul class="space-y-2.5">
+            <li><a href="#why" class="link-underline hover:text-paper">Who we are</a></li>
+            <li><a href="#further" class="link-underline hover:text-paper">Our approach</a></li>
+            <li><a href="#scale" class="link-underline hover:text-paper">Global scale</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-3">
+          <p class="kicker text-paper/40 mb-4">Get in touch</p>
+          <a href="mailto:info@dahsheng.us" class="link-underline hover:text-paper block">info@dahsheng.us</a>
+          <p class="mt-3 text-paper/45 text-sm leading-relaxed">Innovation centers & manufacturing across Asia and North America.</p>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 text-sm text-paper/40">
+        <p>&copy; <span id="year"></span> Dah Sheng Chemical (DSC&reg;). All rights reserved.</p>
+        <p class="font-mono">Taking Foam Further&trade;</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Marquee content
+    const items = ['DREAMCELL®', 'Advanced Foam', 'DPX®', 'Chemical Engineering', 'MORPH™', 'Material Science', 'Since 1945', 'Taking Foam Further™'];
+    const trackHTML = items.map(i => `<span class="mx-8 font-mono text-sm uppercase tracking-[0.18em] text-ink/45">${i}</span><span class="text-brand/50">◆</span>`).join('');
+    document.querySelectorAll('.marquee-track').forEach(t => t.innerHTML = trackHTML);
+
+    // Nav scroll state
+    const nav = document.getElementById('nav');
+    const onScroll = () => {
+      if (window.scrollY > 20) nav.classList.add('bg-paper/85','backdrop-blur-md','shadow-[0_1px_0_rgba(17,19,24,0.08)]');
+      else nav.classList.remove('bg-paper/85','backdrop-blur-md','shadow-[0_1px_0_rgba(17,19,24,0.08)]');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Count-up
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const fmt = (n, plain) => plain ? String(n) : n.toLocaleString();
+    const countUp = (el) => {
+      const target = +el.dataset.count, suffix = el.dataset.suffix || '', plain = el.dataset.plain === '1';
+      if (reduce) { el.textContent = fmt(target, plain) + suffix; return; }
+      const dur = 1400, start = performance.now();
+      const step = (t) => {
+        const p = Math.min((t - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(Math.round(target * eased), plain) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+  </script>
+
+  <style>
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-track { display:inline-flex; align-items:center; }
+  </style>
+</body>
+</html>
