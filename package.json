@@ -1,10 +1,10 @@
 {
   "name": "website-building",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "DSC website scaffold and local preview tooling",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node serve.mjs",
+    "test": "node --test"
   },
   "keywords": [],
   "author": "",
